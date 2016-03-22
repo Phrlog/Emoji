@@ -1,0 +1,38 @@
+.emoj{
+    float:left; 
+    width:auto;
+    display:inline-block;
+    text-align: left;
+    margin: 5px;
+    cursor: pointer;
+/*    border-radius: 10px;  Р Р°РґРёСѓСЃ РіСЂР°РЅРёС†
+    box-shadow: 0 0 15px #A9A9A9;  Р Р°Р·РјРµСЂ Рё С†РІРµС‚ С‚РµРЅРё Р±Р»РѕРєР°*/
+    
+}
+
+.code p {
+    font-size: 12pt;
+    float:right;
+    padding-left: 100px;
+}
+
+h3 {
+    margin-bottom: 1.2em;
+}
+
+.emoj img {
+    float: right;
+
+}
+
+textarea {
+    min-width: 100%;
+    height: 400px;
+}
+
+body {
+    background-image: url(../light_grey.png);
+     margin: 0;
+     padding: 0;
+     text-align: center;
+}
