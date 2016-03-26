@@ -25,7 +25,7 @@
 
                 $obj = new Emoji((!$_GET['category']) ? "all" : $_GET['category']);
 
-                if (isset($_POST['back'])) {
+                if (isset($_POST['submit'])) {
                     $obj->draw($_POST['back'], $_POST['front'], $_POST['word']);
                 } else {
                     $obj->show();
