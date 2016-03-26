@@ -78,7 +78,7 @@ class Emoji {
         }
         echo "<div class='row'>";
         echo "<div class='col-md-6'><h3>Как выглядит:</h3>" . $result . "</div>";
-        echo "<div class='col-md-6'><h3>Код для вставки:</h3><textarea id='foo'>" . $codes . "</textarea><button class='btn' data-clipboard-target='#foo'>Скопировать</button></div>";
+        echo "<div class='col-md-6'><h3>Код для вставки:</h3><textarea id='foo' onclick='this.select();'>" . $codes . "</textarea><button class='btn' data-clipboard-target='#foo'>Скопировать</button></div>";
         echo "</div>";
         
         fclose($file);
