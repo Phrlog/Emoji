@@ -57,10 +57,10 @@ class Emoji {
         for ($w = 0; $w < sizeof($chars); $w++) {
             for ($i = 0; $i < 34; $i++) {
                 if ($alphabet[$i] == $chars[$w]) {
-                    fseek($file, $i * 90);
+                    fseek($file, $i * 99);
                 }
             }
-            for ($j = 0; $j < 10; $j++) {
+            for ($j = 0; $j < 12; $j++) {
                 $buffer = fgets($file);
                 for ($i = 0; $i < 8; $i++) {
                     if (strcasecmp($buffer[$i], "0") == 0) {
