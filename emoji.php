@@ -25,7 +25,6 @@ class Emoji {
 
     private function getImage($r) {
         foreach ($this->images as $key => $value) {
-            $key = preg_replace("/[^0-9]/", '', $key);
             if (strcasecmp($value, $r) == 0) {
                 return "<img src={$value} width='20px' </img>";
             }
@@ -35,9 +34,8 @@ class Emoji {
     //получаем код смайлика по номеру
     private function getCode($r) {
         foreach ($this->images as $key => $value) {
-            $key = preg_replace("/[^0-9]/", '', $key);
             if (strcasecmp($value, $r) == 0) {
-                return "&amp;#$key;";
+                return str_replace("_", "", $key);
             }
         }
     }
