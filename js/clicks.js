@@ -28,7 +28,7 @@ $(document).on('click', '.emoj', function () {
 });
 
 
-$(document).on('click', '.code', function () {
+$(document).on('click', '.foo', function () {
     var e = this;
     if (window.getSelection) {
         var s = window.getSelection();
