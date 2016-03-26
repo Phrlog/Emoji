@@ -16,6 +16,6 @@
         <input type="text" class="form-control ntSaveForms" name="word" placeholder="Предложение">
     </div>
     
-    <button type="reset" class="btn btn-danger ntSaveFormsSubmit" onclick="window.location.reload(); $.session.clear();" >Сбросить</button>
+        <button type="reset" class="btn btn-danger ntSaveFormsSubmit" onclick="window.location.reload(); $.session.clear();" >Сбросить</button>
     <button type="submit" class="btn btn-primary ntSaveFormsSubmit">Нарисовать</button>
 </form>
