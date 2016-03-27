@@ -12,21 +12,22 @@
     </head>
     <body>
         <!-- автоматическое выделение конечного кода для вставки и выбор смайлика по клику -->
-<div class="container">
-        <?php include 'form.php'; ?>
+        <div class="container">
+            <?php include 'form.php'; ?>
 
-        <ul class="nav nav-tabs">
-            <?php include 'category.php'; ?>
-        </ul>
-        
+            <ul class="nav nav-tabs">
+                <?php include 'category.php'; ?>
+            </ul>
+
             <div>
                 <?php
                 include "emoji.php";
 
                 $obj = new Emoji((!$_GET['category']) ? "all" : $_GET['category']);
 
-                if (isset($_POST['submit'])) {
-                    $obj->draw($_POST['back'], $_POST['front'], $_POST['word']);
+                if ($_POST['back'] != "" && $_POST['front'] != "" && ($_POST['word']) != "") {
+                    echo "<script>$.session.clear();</script>;";
+                    $obj->draw($_POST['back'], $_POST['front'], $_POST['word']);                   
                 } else {
                     $obj->show();
                 }
