@@ -34,7 +34,6 @@
                 ?>
             </div>
         </div>
-        <script type='text/javascript' src='js/ntsaveforms.js'></script>
         <script type="text/javascript" src="js/clicks.js"></script>
     </body>
 </html>
