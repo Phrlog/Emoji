@@ -5,8 +5,7 @@
     text-align: left;
     margin: 5px;
     cursor: pointer;
-/*    border-radius: 10px;  Р Р°РґРёСѓСЃ РіСЂР°РЅРёС†
-    box-shadow: 0 0 15px #A9A9A9;  Р Р°Р·РјРµСЂ Рё С†РІРµС‚ С‚РµРЅРё Р±Р»РѕРєР°*/
+    position: relative;
     
 }
 
@@ -37,3 +36,14 @@ body {
      text-align: center;
      font-family: 'Merriweather', serif;
 }
+.emoj:hover::after {
+    content: attr(data-title); /* Выводим текст */
+    z-index: 1; /* Отображаем подсказку поверх других элементов */
+    background: rgba(255,255,230,0.9); /* Полупрозрачный цвет фона */
+    font-family: Arial, sans-serif; /* Гарнитура шрифта */
+    font-size: 11px; /* Размер текста подсказки */
+    padding: 5px 10px; /* Поля */
+    border: 1px solid #333; /* Параметры рамки */
+    position: absolute;
+    left: 100%; top: -150%;
+   }
