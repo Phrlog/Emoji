@@ -26,7 +26,6 @@
                 $obj = new Emoji((!$_GET['category']) ? "all" : $_GET['category']);
 
                 if ($_POST['back'] != "" && $_POST['front'] != "" && ($_POST['word']) != "") {
-                    echo "<script>$.session.clear();</script>";
                     $obj->draw($_POST['back'], $_POST['front'], $_POST['word']);                   
                 } else {
                     $obj->show();
