@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
     </div>
 
     <div class="form-group col-md-4">
-        <input type="text" class="form-control" name="word" placeholder="Предложение">
+        <input type="text" class="form-control" id="word" name="word" placeholder="Предложение">
     </div>
     <button type="reset" class="btn btn-danger" onclick="window.location.href = document.location.href; $.session.clear();">Сбросить</button>
     <button type="submit" class="btn btn-primary" name="submit">Нарисовать</button>
