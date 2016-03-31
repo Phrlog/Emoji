@@ -35,6 +35,29 @@ $("input[name='word']").blur(function(){
         $.session.set('word', word);
 });
 
+$(document).on('click', '#arrow', function () {
+    $('#letter').attr('value', $.session.get('b_image'));
+    $('#back').attr('value', $.session.get('f_image'));
+    if (($.session.get('f_image') !== undefined) && ($.session.get('b_image') !== undefined))
+    {
+        var tmp = $.session.get('f_image');
+        $.session.set('f_image', $.session.get('b_image'));
+        $.session.set('b_image', tmp);
+    }
+    else if ($.session.get('b_image') !== undefined){
+        $.session.set('f_image', $.session.get('b_image'));
+        $.session.set('b_image', "");
+        var img = document.getElementById("b_image");
+        img.src = "1.png";
+    }
+    else if ($.session.get('f_image') !== undefined){
+        $.session.set('b_image', $.session.get('f_image'));
+        $.session.set('f_image', "");
+        var img = document.getElementById("f_image");
+        img.src = "1.png";
+    }
+});
+
 var clipboard = new Clipboard('.btn');
 
 clipboard.on('success', function(e) {
