@@ -47,3 +47,6 @@ body {
     position: absolute;
     left: 100%; top: -150%;
    }
+   #arrow{
+        cursor: pointer;
+   }
