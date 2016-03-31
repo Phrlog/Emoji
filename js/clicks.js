@@ -9,6 +9,9 @@ $(function(){
         img.src = $.session.get('f_image');
         $('#letter').attr('value', $.session.get('f_image'));
     }
+    if ($.session.get('word') !== undefined) {
+        $('#word').attr('value', $.session.get('word'));
+    }
 });
 
 $(document).on('click', '.emoj', function () {
@@ -27,6 +30,10 @@ $(document).on('click', '.emoj', function () {
     }
 });
 
+$("input[name='word']").blur(function(){
+        var word = $("input[name='word']").val();
+        $.session.set('word', word);
+});
 
 var clipboard = new Clipboard('.btn');
 
