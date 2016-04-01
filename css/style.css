@@ -6,7 +6,7 @@
     margin: 5px;
     cursor: pointer;
     position: relative;
-    
+
 }
 
 .code p {
@@ -30,11 +30,11 @@ textarea {
 }
 
 body {
-    background-image: url(../light_grey.png);
-     margin: 0;
-     padding: 0;
-     text-align: center;
-     font-family: 'Merriweather', serif;
+    background-image: url(../images/light_grey.png);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Merriweather', serif;
 }
 .emoj:hover::after {
     content: attr(data-title); /* Выводим текст */
@@ -46,7 +46,7 @@ body {
     border: 1px solid #333; /* Параметры рамки */
     position: absolute;
     left: 100%; top: -150%;
-   }
-   #arrow{
-        cursor: pointer;
-   }
+}
+#arrow{
+    cursor: pointer;
+}

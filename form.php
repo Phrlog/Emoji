@@ -1,5 +1,6 @@
 <br>
 <?php
+//валидация формы
 if (isset($_POST['submit'])) {
     $alert = "";
     if ($_POST['back'] == "") {
@@ -22,15 +23,15 @@ if (isset($_POST['submit'])) {
         
     <div class="col-sm-2 col-md-2 form-group">
         <input type="hidden" class="form-control" id="back" name="back" placeholder="Задник" value="">
-        Задний фон: <img src="1.png" id="b_image">    
+        Задний фон: <img src="images/1.png" id="b_image">    
     </div>
             
         <div class="col-sm-1 col-md-1 form-group">
-            <img src="arrow.png" width="32px" id="arrow" onclick="window.location.href = document.location.href;">
+            <img src="images/arrow.png" width="32px" id="arrow" onclick="window.location.href = document.location.href;">
         </div>
     <div class="col-sm-2 col-md-2 form-group">
         <input type="hidden" class="form-control" id="letter" name="front" placeholder="Буква" value="">
-        Буква: <img src="1.png" id="f_image">
+        Буква: <img src="images/1.png" id="f_image">
     </div>
 
     <div class="col-sm-4 col-md-4 form-group">

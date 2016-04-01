@@ -11,7 +11,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <!-- автоматическое выделение конечного кода для вставки и выбор смайлика по клику -->
         <div class="container">
             <?php include 'form.php'; ?>
 

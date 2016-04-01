@@ -14,7 +14,7 @@ class Emoji {
             $this->images = $stm->fetchAll(PDO::FETCH_KEY_PAIR);
         }
     }
-
+    //показать смайлики
     public function show() {
         foreach ($this->images as $key => $value) {
             $key = str_replace("_", "", $key);
@@ -23,7 +23,7 @@ class Emoji {
             echo '</div>';
         }
     }
-
+    //получить изображение
     private function getImage($r) {
         foreach ($this->images as $key => $value) {
             if (strcasecmp($value, $r) == 0) {
@@ -32,7 +32,7 @@ class Emoji {
         }
     }
 
-    //получаем код смайлика по номеру
+    //получаем код смайлика по ссылке на изображение
     private function getCode($r) {
         foreach ($this->images as $key => $value) {
             if (strcasecmp($value, $r) == 0) {
@@ -43,8 +43,8 @@ class Emoji {
 
     //рисуем предложение смайликами
     public function draw($back, $paint, $word) {
-        $word = mb_strtolower($word, 'UTF-8');
-        $chars = $this->mbStringToArray($word);
+        $word = mb_strtolower($word, 'UTF-8'); //приводим к нижнему регистру
+        $chars = $this->mbStringToArray($word);//переводим строку в массив
         $image = $this->getImage($back);
         $image1 = $this->getImage($paint);
         $code = $this->getCode($back);
@@ -54,15 +54,15 @@ class Emoji {
         $codes = "";
         $alphabet = ["а", "б", "в", "г", "д", "е", "ё", "ж", "з", "и", "й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы", "ь", "э", "ю", "я",
         "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "];    
-        for ($w = 0; $w < sizeof($chars); $w++) {
+        for ($w = 0; $w < sizeof($chars); $w++) { //перебираем все символы
             for ($i = 0; $i < 61; $i++) {
-                if ($alphabet[$i] == $chars[$w]) {
-                    fseek($file, $i * 99);
+                if ($alphabet[$i] == $chars[$w]) { //находим нужную букву
+                    fseek($file, $i * 99); //перемещаемся по текстовому файлу на нужную позицию буквы
                 }
             }
-            for ($j = 0; $j < 12; $j++) {
+            for ($j = 0; $j < 12; $j++) { // в букве 12 строк
                 $buffer = fgets($file);
-                for ($i = 0; $i < 8; $i++) {
+                for ($i = 0; $i < 8; $i++) { //в каждой строке 8 символов
                     if (strcasecmp($buffer[$i], "0") == 0) {
                         $result.=$image;
                         $codes.=$code;
@@ -75,10 +75,15 @@ class Emoji {
                 $codes.="\n";
             }
         }
-        echo "<div class='row'>";
-        echo "<div class='col-md-6'><h3>Как выглядит:</h3>" . $result . "</div>";
-        echo "<div class='col-md-6'><h3>Код для вставки:</h3><textarea id='foo' onclick='this.select();'>" . $codes . "</textarea><button class='btn' data-clipboard-target='#foo'>Скопировать</button></div>";
-        echo "</div>";
+        echo           
+        '<div class="row">
+        <div class="col-md-6"> <h3>Как выглядит:</h3>'. $result .'</div>       
+        <div class="col-md-6">
+        <h3>Код для вставки:</h3>
+        <textarea id="foo">'.$codes.'</textarea>
+        <button class="btn" data-clipboard-target="#foo">Скопировать</button>
+        </div>
+        </div>';     
         
         fclose($file);
     }

@@ -48,13 +48,13 @@ $(document).on('click', '#arrow', function () {
         $.session.set('f_image', $.session.get('b_image'));
         $.session.set('b_image', "");
         var img = document.getElementById("b_image");
-        img.src = "1.png";
+        img.src = "images/1.png";
     }
     else if ($.session.get('f_image') !== undefined){
         $.session.set('b_image', $.session.get('f_image'));
         $.session.set('f_image', "");
         var img = document.getElementById("f_image");
-        img.src = "1.png";
+        img.src = "images/1.png";
     }
 });
 
