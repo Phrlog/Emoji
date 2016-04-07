@@ -12,24 +12,16 @@
     </head>
     <body>
         <div class="container">
+            <?php if($error!=false){include 'error.php';} ?>
+                       
             <?php include 'form.php'; ?>
 
             <ul class="nav nav-tabs">
-                <?php include 'category.php'; ?>
+                <?php include 'menu.php'; ?>
             </ul>
 
             <div>
-                <?php
-                include "emoji.php";
-
-                $obj = new Emoji((!$_GET['category']) ? "all" : $_GET['category']);
-
-                if ($alert == "" && isset($_POST['submit'])) {
-                    $obj->draw($_POST['back'], $_POST['front'], $_POST['word']);                   
-                } else {
-                    $obj->show();
-                }
-                ?>
+                <?php include "$content"; ?>
             </div>
         </div>
         <script type="text/javascript" src="js/clicks.js"></script>

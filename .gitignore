@@ -1,4 +1,3 @@
-/.htaccess
 /favicon.ico
 /nbproject/
-/db.php
+/templates/db_settings.php

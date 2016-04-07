@@ -1,5 +1,4 @@
 <?php
-
 $category = [
     "?category=all" => "Показать всё",
     "?category=emotions" => "Эмоции",
@@ -26,8 +25,6 @@ $category = [
     "?category=arrows" => "Стрелки",
     "?category=flags" => "Флаги",
     "?category=numeric" => "Числа"];
-
-$active = !$_GET['category'] ? "all" : $_GET['category'];
 
 foreach ($category as $key => $value) {
     if (strcasecmp(mb_substr($key, 10, mb_strlen($key, 'utf-8'), 'utf-8'), $active ) == 0) {
