@@ -10,6 +10,8 @@ class Model {
         "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
         "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "
     ];
+    const LETTER_LENGTH = 12;
+    const ROW_LENGTH = 8;
 
     function __construct() {
         require_once '../templates/db_settings.php';
@@ -29,31 +31,18 @@ class Model {
     }
 
     public function getResult($back, $paint, $word) {
-        $word = mb_strtolower($word, 'UTF-8');
-        $chars = $this->mbStringToArray($word);
-        $image = $this->getImage($back);
-        $image1 = $this->getImage($paint);
-        $code = $this->getCode($back);
-        $code1 = $this->getCode($paint);
+        $chars = $this->mbStringToArray(mb_strtolower($word, 'UTF-8')); 
+        list($image, $image1, $code, $code1) = [$this->getImage($back), $this->getImage($paint), $this->getCode($back), $this->getCode($paint)];
         $file = fopen("../1.md", "r");
-        $preview = "";
-        $result = "";
-        for ($w = 0; $w < sizeof($chars); $w++) { //перебираем все символы
-            for ($i = 0; $i < 61; $i++) {
-                if ($this->symbols[$i] == $chars[$w]) { //находим нужную букву
-                    fseek($file, $i * 99); //перемещаемся по текстовому файлу на нужную позицию буквы
-                }
-            }
-            for ($j = 0; $j < 12; $j++) { // в букве 12 строк
+        $result = $preview = "";
+        for ($w = 0; $w < sizeof($chars); $w++) { 
+            $position = array_search($chars[$w], $this->symbols);
+            fseek($file, $position * 99);
+            for ($j = 0; $j < self::LETTER_LENGTH; $j++) { 
                 $buffer = fgets($file);
-                for ($i = 0; $i < 8; $i++) { //в каждой строке 8 символов
-                    if (strcasecmp($buffer[$i], "0") == 0) {
-                        $preview.=$image;
-                        $result.=$code;
-                    } else if (strcasecmp($buffer[$i], "1") == 0) {
-                        $preview.=$image1;
-                        $result.=$code1;
-                    }
+                for ($i = 0; $i < self::ROW_LENGTH; $i++) {                   
+                    $preview.= ($buffer[$i] == "0") ? $image : $image1;
+                    $result.= ($buffer[$i] == "0") ? $code : $code1;
                 }
                 $preview.="<br>";
                 $result.="\n";
@@ -64,19 +53,12 @@ class Model {
     }
 
     private function getCode($r) {
-        foreach ($this->data as $key => $value) {
-            if (strcasecmp($value, $r) == 0) {
-                return str_replace("_", "", $key);
-            }
-        }
+        $key = array_search($r, $this->data);
+        return str_replace("_", "", $key);
     }
 
     private function getImage($r) {
-        foreach ($this->data as $value) {
-            if (strcasecmp($value, $r) == 0) {
-                return "<img src={$value} width='20px'</img>";
-            }
-        }
+        return "<img src={$r} width='20px'</img>";
     }
 
     private function mbStringToArray($string) {

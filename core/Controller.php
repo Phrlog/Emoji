@@ -2,16 +2,17 @@
 
 Class Controller {
 
-    public $error;
+    private $error;
     private $result;
-    public $data;
-    public $category;
+    private $data;
+    private $category;
 
     function __construct() {
 
         $this->error = false;
         $this->result = false;
         $this->data = false;
+        $this->category = false;
     }
 
     function processData() {
