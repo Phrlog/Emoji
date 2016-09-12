@@ -2,43 +2,43 @@
 
 Class Controller {
 
+    private $model;
     private $error;
-    private $result;
-    private $data;
-    private $category;
 
     function __construct() {
-
+        $this->model = new Model();
         $this->error = false;
-        $this->result = false;
-        $this->data = false;
-        $this->category = false;
     }
 
-    function processData() {
+    function start() {
 
-        $this->userRequest();
-
-        if ($this->result) {
-            View::displayResults($this->result);
-        } elseif ($this->data) {
-            View::displayByCategory($this->data, $this->error, $this->category);
+        if(isset($_POST['submit'])) {
+            $this->postRequest();
+        }
+        else {
+            $this->showRequest();
         }
     }
 
-    function userRequest() {
+    function postRequest() {
 
-        $model = new Model();
-        $this->category = !$_GET['category'] ? "all" : $_GET['category'];
-        $model->getData($this->category);
-        $this->data = $model->data;
-        // данные отправлены
-        if (isset($_POST['submit'])) {
-            $this->validate();
-            if ($this->error === false) {
-                $this->result = $model->getResult($_POST['back'], $_POST['front'], $_POST['word']);
-            }
+        $this->validate();
+
+        if ($this->error === false) {
+            $this->model->getData('all');
+            $result = $this->model->getResult($_POST['back'], $_POST['front'], $_POST['word']);
+            View::displayResults($result);
         }
+        else {
+            $this->showRequest();
+        }
+    }
+
+    public function showRequest()
+    {
+        $category = empty($_GET['category']) ? "all" : $_GET['category'];
+        $data = $this->model->getData($category);
+        View::displayByCategory($data, $this->error, $category);
     }
 
     function validate() {
