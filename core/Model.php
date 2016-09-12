@@ -2,8 +2,8 @@
 
 class Model {
 
-    public $data;
     private $connection;
+    private $data;
     private $symbols = [
         "а", "б", "в", "г", "д", "е", "ё", "ж", "з", "и", "й", "к", "л", "м", "н",
         "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы", "ь", "э", "ю", "я",
@@ -15,8 +15,8 @@ class Model {
 
     function __construct() {
         require_once '../templates/db_settings.php';
-        $this->data = false;
         $this->connection = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
+        $this->data = array();
     }
 
     public function getData($category) {
@@ -28,12 +28,13 @@ class Model {
             $stm->execute(array($category));
             $this->data = $stm->fetchAll(PDO::FETCH_KEY_PAIR);
         }
+        return $this->data;
     }
 
     public function getResult($back, $paint, $word) {
         $chars = $this->mbStringToArray(mb_strtolower($word, 'UTF-8')); 
         list($image, $image1, $code, $code1) = [$this->getImage($back), $this->getImage($paint), $this->getCode($back), $this->getCode($paint)];
-        $file = fopen("../1.md", "r");
+        $file = fopen("../core/words.md", "r");
         $result = $preview = "";
         for ($w = 0; $w < sizeof($chars); $w++) { 
             $position = array_search($chars[$w], $this->symbols);
@@ -52,13 +53,13 @@ class Model {
         return array($preview, $result);
     }
 
-    private function getCode($r) {
-        $key = array_search($r, $this->data);
+    private function getCode($code) {
+        $key = array_search($code, $this->data);
         return str_replace("_", "", $key);
     }
 
-    private function getImage($r) {
-        return "<img src={$r} width='20px'</img>";
+    private function getImage($image) {
+        return "<img src={$image} width='20px' height='20px' </img>";
     }
 
     private function mbStringToArray($string) {
